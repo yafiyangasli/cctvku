@@ -3,7 +3,7 @@
       <footer class="footer bg-dark text-white pr-5 pl-5 pt-4 pb-1">
         <div class="row mb-3">
           <div class="col-6">
-            <h5 style="font-family: Montserrat-extra-bold; font-size: 16px">CCTV KU</h5>
+            <h5 style="font-family: Montserrat-extra-bold; font-size: 16px">Adinaya CCTV</h5>
             <p class="text-secondary" style="font-family: Montserrat-regular; font-size: 16px;">Jl. masukin alamat disini</p> 
           </div>
           <div class="col-6">
@@ -16,7 +16,7 @@
         <div class="row no-gutters">
         <div class="col-12">
           <hr style="border-width: 2px; border-color: black; opacity: 50%;">
-          <p style="text-align: center;">Credit CCTVKU</p>
+          <p style="text-align: center;">Credit Adinaya CCTV</p>
         </div>
         </div>
       </footer>

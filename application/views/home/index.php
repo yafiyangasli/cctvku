@@ -7,7 +7,7 @@
   		<div class="row justify-content-center">  		
   		<?php foreach($produk as $pr):?>
   		<div class="card m-4" style="width:11rem; border: none;">
-		   <a href="" class="text-dark text-decoration-none"><img class="card-img-top" src="<?php echo base_url();?>assets/images/cctv/<?php echo $pr['gambar'];?>" alt="Card image"></a>
+		   <a href="<?=base_url('product/detailProduk/').$pr['id_produk'];?>" class="text-dark text-decoration-none"><img class="card-img-top" src="<?php echo base_url();?>assets/images/cctv/<?php echo $pr['gambar'];?>" alt="Card image"></a>
 		   <div class="card-body">
 		     <a href="" class="text-dark text-decoration-none"><h6 class="card-title"><?= $pr['nama']?></h6></a>
 		     <p class="card-text" style="font-size: 11px;"><?=rupiah($pr['harga'])?></p>

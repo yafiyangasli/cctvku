@@ -3,7 +3,7 @@
 	<div class="col-12 col-sm col-md align-self-center">
 		<div id="wrapper" >	
 		<h1>About Us</h1>
-		<p><strong>CCTV ku</strong> Tulis disini</p>
+		<p><strong>Adinaya CCTV</strong> Tulis disini</p>
 		<p>Disini juga
 			<br>Disini juga</p>
 		<p>Bisa juga disini
