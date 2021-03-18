@@ -1,6 +1,6 @@
 <div class="row no-gutters mt-5">
 	<div class="col-10 offset-1 offset-sm-1 col-sm-7 order-sm-1 col-md-7 order-md-1 pb-5">
-		<h3 id="header-cart">Cart</h3>
+		<h3 id="header-cart">Keranjang</h3>
 		<div class="row">
 			<div class="col-12 col-sm-4">
 				<?= $this->session->flashdata('message');?>
@@ -41,7 +41,7 @@
 									<?php endif;	
 									endfor;?>
 									</select>									
-									<button class="btn btn-light col-5 col-sm offset-1" value="Cart" style="font-family: Montserrat-regular; font-size: 10px; padding: 5px;">Update Cart</button>
+									<button class="btn btn-light col-5 col-sm offset-1" value="Cart" style="font-family: Montserrat-regular; font-size: 10px; padding: 5px;">Perbarui Keranjang</button>
 					    		</div>
 					    		</div>
 					    		<div class="row justify-content-center pt-3 no-gutters">
@@ -58,12 +58,12 @@
 		</ul>
 		<hr>
 		<div class="row justify-content-center no-gutters">
-			<a href="<?=base_url('product')?>" class="btn btn-light" style="font-family: Montserrat-regular;">Continue Shopping</a>
+			<a href="<?=base_url('product')?>" class="btn btn-light" style="font-family: Montserrat-regular;">Lanjut Belanja</a>
 		</div>
 	</div>
 	<div class="col-sm-3 order-sm-2 offset-sm-1 col-md order-md-1 bg-light mt-5 mb-5">
 		<div class="container-fluid">
-			<h5 class="pt-5 pb-3">Order Summary</h5>
+			<h5 class="pt-5 pb-3">Total Pesanan</h5>
 			<?php 
 	          $totalPesan=0;
 	          $totalCheckout=0;
@@ -87,11 +87,11 @@
 			          endforeach;
 			    	?>
 	        		<div class="col-sm-5">
-					<p id="order-summary-body"><?=$totalBarangAkhir;?> items</p>
+					<p id="order-summary-body"><?=$totalBarangAkhir;?> barang</p>
 					</div>
 					<?php else:?>
 					<div class="col-sm">
-			        <p id="order-summary-body">There are no items in your cart</p>
+			        <p id="order-summary-body">Keranjangmu kosong</p>
 					</div>
 				<?php endif;?>
 				<?php if($jumlahPesan!=NULL):?>

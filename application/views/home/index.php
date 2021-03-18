@@ -1,6 +1,6 @@
 <img src="<?=base_url('assets/images/header1.png');?>" class="img-fluid">
 <div class="container my-4">
-	<h2 class="text-center">New Products</h2>
+	<h2 class="text-center">Produk Terbaru</h2>
 
 	<div class="row">
   	<div class="col-12 col-sm-8 offset-sm-2 mb-5">

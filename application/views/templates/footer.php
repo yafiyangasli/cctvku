@@ -7,7 +7,7 @@
             <p class="text-secondary" style="font-family: Montserrat-regular; font-size: 16px;">Jl. masukin alamat disini</p> 
           </div>
           <div class="col-6">
-            <h5 style="font-family: Montserrat-regular; font-size: 16px;">Connect with us!</h5>
+            <h5 style="font-family: Montserrat-regular; font-size: 16px;">Terhubung dengan kami!</h5>
             <ul class="list-group list-group-horizontal" style="list-style-type: none;">
               <li class="pr-3"><i class="fab fa-fw fa-whatsapp"></i> masukkin nomer wa disini</li>
             </ul>

@@ -5,7 +5,7 @@
 	<div class="mr-3 p-3"id="sidebar-catalogue">
 		<h5>Filter</h5>
 		<hr>
-		<h6 class="my-auto pb-3">Types of product</h6>
+		<h6 class="my-auto pb-3">Tipe Prouk</h6>
 		<div class="form-group">
 			<div class="form-check ml-3">
 				<input class="form-check-input" type="checkbox" data-jenis="" checked="checked">
@@ -15,7 +15,7 @@
 			</div>
 		</div>
 		<form method="post" action="<?=base_url('product/filterBaru');?>">
-		<h6 class="my-auto pb-3">Price</h6>
+		<h6 class="my-auto pb-3">Harga</h6>
 		<div class="form-row align-items-center">
 			<div class="col-lg-5">
 			<div class="input-group">
@@ -38,15 +38,15 @@
 		    </div>
 		</div>
 		<div class="row justify-content-center mt-3">
-			<button type="submit" class="btn btn-dark">Check</button>
+			<button type="submit" class="btn btn-dark">Cek</button>
 		</div>
 		</form>
 		</div>
 	</div>
 	<div class="col-12 col-md-9 col-lg-9" id="list-produk">
-		<h4 class="mt-3" style="font-family: 'Montserrat-bold'">OUR PRODUCT</h4>
+		<h4 class="mt-3" style="font-family: 'Montserrat-bold'">Produk Kami</h4>
 		<?php if($this->session->userdata('search')!=NULL):?>
-		<p style="font-family: 'Montserrat-regular'; font-size: 12px;">Showing the result of "<?=$this->session->userdata('search');?>"</p>
+		<p style="font-family: 'Montserrat-regular'; font-size: 12px;">Menampilkan hasil dari "<?=$this->session->userdata('search');?>"</p>
 		<?php endif;?>
 		<hr>
 		<div class="row">
@@ -74,7 +74,7 @@
 		<div class="card m-3 mr-5" style="width:13rem; border: none;">
 		<div id="img-outofstock">
 		   <img class="card-img-top" id="img-card-catalogue" src="<?php echo base_url();?>assets/images/cctv/<?php echo $pr['gambar'];?>" alt="Card image">
-		   <div class="centered text-secondary">Out of Stock</div>
+		   <div class="centered text-secondary">Habis</div>
 		</div>
 		   <div class="card-body">
 		   	<div class="row">

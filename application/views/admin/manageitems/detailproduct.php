@@ -15,16 +15,16 @@
           		<p><?=rupiah($produk['harga']);?></p>
           		</div>
           		<div class="col-sm-6">
-              <p>Stock <?= $produk['stok'];?></p>
+              <p>Stok <?= $produk['stok'];?></p>
               </div>
           		</div>
           		<br>
-          		<h3 class="text-dark">Description</h3>
+          		<h3 class="text-dark">Deskripsi</h3>
           		<p><?=$produk['deskripsi'];?></p>
               <?php if($produk['is_new']==0):?>
           <div class="row justify-content-center mt-5 mb-5">
             <div class="col-md-8">
-              <a href="<?=base_url('admin/addNewProduk/').$produk['id_produk'];?>" class="btn btn-secondary">Add to New Product</a>
+              <a href="<?=base_url('admin/addNewProduk/').$produk['id_produk'];?>" class="btn btn-secondary">Tambah ke Produk Terbaru</a>
             </div>
           </div>
         <?php endif;?>

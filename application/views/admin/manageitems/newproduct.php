@@ -27,10 +27,10 @@
 			  <thead class="thead-dark">
 			    <tr class="text-center">
 			      <th scope="col">#</th>
-			      <th scope="col">Product</th>
-			      <th scope="col">Price</th>
-			      <th scope="col">Image</th>
-			      <th scope="col">Action</th>
+			      <th scope="col">Produk</th>
+			      <th scope="col">Harga</th>
+			      <th scope="col">Gambar</th>
+			      <th scope="col">Aksi</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -42,7 +42,7 @@
 			      <td><?=rupiah($pr['harga']);?></td>
 			      <td><img src="<?= base_url()?>assets/images/cctv/<?=$pr['gambar'];?>" class="mr-5 ml-5" style="width: 150px"></td>
 			      <td>
-					<a href="<?= base_url('admin/hapusFromNewProduk/').$pr['id_produk'];?>" class="badge badge-danger">Delete from New Product</a>
+					<a href="<?= base_url('admin/hapusFromNewProduk/').$pr['id_produk'];?>" class="badge badge-danger">Hapus dari Produk Baru</a>
 			      </td>
 			    </tr>
 			    <?php $i++;?>

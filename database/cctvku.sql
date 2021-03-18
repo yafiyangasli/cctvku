@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Mar 2021 pada 08.48
+-- Waktu pembuatan: 18 Mar 2021 pada 10.46
 -- Versi server: 10.4.8-MariaDB
 -- Versi PHP: 7.3.11
 
@@ -690,13 +690,13 @@ INSERT INTO `ongkir_propinsi` (`kd`, `propinsi1`, `propinsi2`, `ongkir_jne`, `on
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `order`
+-- Struktur dari tabel `orderan`
 --
 
-CREATE TABLE `order` (
-  `id_order` int(11) NOT NULL,
+CREATE TABLE `orderan` (
+  `id_orderan` int(11) NOT NULL,
   `id_checkout` int(11) NOT NULL,
-  `username` varchar(25) NOT NULL,
+  `username` varchar(255) NOT NULL,
   `id_produk` int(11) NOT NULL,
   `jumlah` int(11) NOT NULL,
   `harga` int(11) NOT NULL,
@@ -725,9 +725,10 @@ CREATE TABLE `produk` (
 --
 
 INSERT INTO `produk` (`id_produk`, `nama`, `harga`, `gambar`, `deskripsi`, `berat`, `stok`, `is_new`) VALUES
-(1, 'CCTV 1', 200000, 'cctv1.jpg', 'Jual HD Camera CCTV Microlexus MTI 2056 IRP_Smart IR Dome Eyeball 2.0 MP di JakartaCCTV harga murah dan berkualitas sangat baik, kami memperkenalkan kepada Anda sebuah Dome Camera dengan kualitas resolusi High Definition dari brand Microlexus. Brand yang telah banyak digunakan oleh konsumen di Indonesia. Kualitas produk yang diberikan brand ini tidak kalah dengan brand-brand yang telah terlebih dahulu muncul.', 1, 3, 1),
-(2, 'CCTV 2', 250000, 'cctv2.jpg', 'Jual HD Camera CCTV Microlexus MTI 2056 IRP_Smart IR Dome Eyeball 2.0 MP di JakartaCCTV harga murah dan berkualitas sangat baik, kami memperkenalkan kepada Anda sebuah Dome Camera dengan kualitas resolusi High Definition dari brand Microlexus. Brand yang telah banyak digunakan oleh konsumen di Indonesia. Kualitas produk yang diberikan brand ini tidak kalah dengan brand-brand yang telah terlebih dahulu muncul.', 1, 0, 1),
-(3, 'CCTV 3', 240000, 'cctv3.jpg', 'Jual HD Camera CCTV Microlexus MTI 2056 IRP_Smart IR Dome Eyeball 2.0 MP di JakartaCCTV harga murah dan berkualitas sangat baik, kami memperkenalkan kepada Anda sebuah Dome Camera dengan kualitas resolusi High Definition dari brand Microlexus. Brand yang telah banyak digunakan oleh konsumen di Indonesia. Kualitas produk yang diberikan brand ini tidak kalah dengan brand-brand yang telah terlebih dahulu muncul.', 1, 0, 1);
+(1, 'CCTV 1', 200000, 'cctv1.jpg', 'Jual HD Camera CCTV Microlexus MTI 2056 IRP_Smart IR Dome Eyeball 2.0 MP di JakartaCCTV harga murah dan berkualitas sangat baik, kami memperkenalkan kepada Anda sebuah Dome Camera dengan kualitas resolusi High Definition dari brand Microlexus. Brand yang telah banyak digunakan oleh konsumen di Indonesia. Kualitas produk yang diberikan brand ini tidak kalah dengan brand-brand yang telah terlebih dahulu muncul.', 1, 100, 0),
+(2, 'CCTV 2', 250000, 'cctv2.jpg', 'Jual HD Camera CCTV Microlexus MTI 2056 IRP_Smart IR Dome Eyeball 2.0 MP di JakartaCCTV harga murah dan berkualitas sangat baik, kami memperkenalkan kepada Anda sebuah Dome Camera dengan kualitas resolusi High Definition dari brand Microlexus. Brand yang telah banyak digunakan oleh konsumen di Indonesia. Kualitas produk yang diberikan brand ini tidak kalah dengan brand-brand yang telah terlebih dahulu muncul.', 1, 80, 1),
+(3, 'CCTV 3', 240000, 'cctv3.jpg', 'Jual HD Camera CCTV Microlexus MTI 2056 IRP_Smart IR Dome Eyeball 2.0 MP di JakartaCCTV harga murah dan berkualitas sangat baik, kami memperkenalkan kepada Anda sebuah Dome Camera dengan kualitas resolusi High Definition dari brand Microlexus. Brand yang telah banyak digunakan oleh konsumen di Indonesia. Kualitas produk yang diberikan brand ini tidak kalah dengan brand-brand yang telah terlebih dahulu muncul.', 1, 93, 1),
+(7, 'CCTV 4', 170000, '7000a8256b8c9d7185f5fc5c6f0ad182.jpg', 'ssssssssss', 0.5, 2, 0);
 
 -- --------------------------------------------------------
 
@@ -830,10 +831,10 @@ ALTER TABLE `ongkir_propinsi`
   ADD PRIMARY KEY (`kd`);
 
 --
--- Indeks untuk tabel `order`
+-- Indeks untuk tabel `orderan`
 --
-ALTER TABLE `order`
-  ADD PRIMARY KEY (`id_order`);
+ALTER TABLE `orderan`
+  ADD PRIMARY KEY (`id_orderan`);
 
 --
 -- Indeks untuk tabel `produk`
@@ -861,31 +862,31 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `bukti`
 --
 ALTER TABLE `bukti`
-  MODIFY `id_bukti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_bukti` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT untuk tabel `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id_cart` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT untuk tabel `checkout`
 --
 ALTER TABLE `checkout`
-  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_checkout` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
--- AUTO_INCREMENT untuk tabel `order`
+-- AUTO_INCREMENT untuk tabel `orderan`
 --
-ALTER TABLE `order`
-  MODIFY `id_order` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+ALTER TABLE `orderan`
+  MODIFY `id_orderan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT untuk tabel `produk`
 --
 ALTER TABLE `produk`
-  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_produk` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

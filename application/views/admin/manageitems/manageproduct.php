@@ -24,18 +24,18 @@
             <div class="col-lg">
         	
 
-            <a href="" class="btn btn-dark" data-toggle="modal" data-target="#newProductModal">Input New Product</a>
+            <a href="" class="btn btn-dark" data-toggle="modal" data-target="#newProductModal">Input Produk Baru</a>
 
-            <h5 class="mt-3 mb-3">Your Product</h5>
+            <h5 class="mt-3 mb-3">Produk Kamu</h5>
 
             <table class="table table-hover">
 			  <thead class="thead-dark">
 			    <tr class="text-center">
 			      <th scope="col">#</th>
-			      <th scope="col">Product</th>
-			      <th scope="col">Price</th>
-			      <th scope="col">Image</th>
-			      <th scope="col">Action</th>
+			      <th scope="col">Produk</th>
+			      <th scope="col">Harga</th>
+			      <th scope="col">Gambar</th>
+			      <th scope="col">Aksi</th>
 			    </tr>
 			  </thead>
 			  <tbody>
@@ -70,7 +70,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="newRoleModalLabel">Add new product</h5>
+        <h5 class="modal-title" id="newRoleModalLabel">Tambah produk baru</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -78,31 +78,31 @@
       <form action="<?= base_url('admin/manageproduct');?>" method="post" enctype="multipart/form-data">
       <div class="modal-body">
       	<div class="form-group">
-		    <input type="text" class="form-control" name="id_produk" id="id_produk" placeholder="Product id..">
+		    <input type="text" class="form-control" name="id_produk" id="id_produk" placeholder="Id Produk..">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name="produk" id="produk" placeholder="Product name..">
+		    <input type="text" class="form-control" name="produk" id="produk" placeholder="Nama Produk..">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name="harga" id="harga" placeholder="Product price.. (ex: 1000)">
+		    <input type="text" class="form-control" name="harga" id="harga" placeholder="Harga Produk.. (ex: 1000)">
 		  </div>
 		  <div class="form-group">
-		    <input type="text" class="form-control" name="stok" id="stok" placeholder="Product stock..">
+		    <input type="text" class="form-control" name="stok" id="stok" placeholder="Stok Produk..">
 		  </div>
       <div class="form-group">
-        <input type="text" class="form-control" name="berat" id="berat" placeholder="Product weight in Kg.. (ex: 0.25)">
+        <input type="text" class="form-control" name="berat" id="berat" placeholder="Berat Produk dalam Kg.. (ex: 0.25)">
       </div>
           <div class="custom-file mb-3">
             <input type="file" class="custom-file-input" id="image" name="image">
-            <label class="custom-file-label" for="image">Choose Image</label>
+            <label class="custom-file-label" for="image">Pilih Gambar</label>
           </div>
 		  <div class="form-group">
-		    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Product description.." rows="3"></textarea>
+		    <textarea class="form-control" name="deskripsi" id="deskripsi" placeholder="Deskripsi produk.." rows="3"></textarea>
 		  </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Add</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+        <button type="submit" class="btn btn-primary">Tambah</button>
       </div>
       </form>
     </div>

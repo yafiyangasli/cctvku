@@ -55,6 +55,7 @@
 	<!-- navbar -->
 	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 	  <a class="navbar-brand" href="<?=base_url('home');?>" style="font-family: 'Montserrat-SemiBold'"><img src="<?= base_url('assets/logo/logocctv.jpg');?>" style="width: 8rem;"></a>
+	  <img src="<?= base_url('assets/logo/DJ.png');?>" style="width: 8rem;">
 	  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 	    <span class="navbar-toggler-icon"></span>
 	  </button>
@@ -62,13 +63,16 @@
 	  <div class="collapse navbar-collapse" id="navbarSupportedContent">
 	    <ul class="navbar-nav mx-auto">
 	      <li class="nav-item">
-	        <a class="nav-link" href="<?=base_url('home');?>" style="font-family: 'Montserrat-semibold';">HOME</a>
+	        <a class="nav-link" href="<?=base_url('home');?>" style="font-family: 'Montserrat-semibold';">BERANDA</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="<?=base_url('product');?>" style="font-family: 'Montserrat-semibold';">PRODUCT</a>
+	        <a class="nav-link" href="<?=base_url('product');?>" style="font-family: 'Montserrat-semibold';">PRODUK</a>
 	      </li>
 	      <li class="nav-item">
-	        <a class="nav-link" href="<?=base_url('about');?>" style="font-family: 'Montserrat-semibold';">ABOUT US</a>
+	        <a class="nav-link" href="<?=base_url('about');?>" style="font-family: 'Montserrat-regular';">Tentang Kami</a>
+	      </li>
+	      <li class="nav-item">
+	        <a class="nav-link" href="<?=base_url('contact');?>" style="font-family: 'Montserrat-regular';">Kontak</a>
 	      </li>
 	    </ul>
 	    <ul class="navbar-nav">

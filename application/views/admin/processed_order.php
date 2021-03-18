@@ -22,15 +22,18 @@
             
             <div class="col-lg">
 
+            <a href="<?=base_url('admin/downloadDataHarian')?>" class="btn btn-dark mb-3">Download data hari ini</a>
+
+
             <table class="table table-hover">
 			  <thead class="thead-dark">
 			    <tr class="text-center">
 			      <th scope="col">#</th>
-			      <th scope="col">Proof ID</th>
-			      <th scope="col">Purchase ID</th>
+			      <th scope="col">ID Bukti</th>
+			      <th scope="col">ID Pesanan</th>
 			      <th scope="col">Username</th>
 			      <th scope="col">Total</th>
-			      <th scope="col">Transfer Date</th>
+			      <th scope="col">Tanggal Transfer</th>
 			    </tr>
 			  </thead>
 			  <tbody>

@@ -2,8 +2,6 @@
   	<div class="col-10 col-lg-4 offset-1 offset-lg-4">
   		<div class="container-fluid">
   		<h3 id="headRegis">Register</h3>
-  		<p id="bawahHead">New Customers? Create your account, it takes less than a minute</p>
-
 	  		<form class="p-auto" method="post" action="<?=base_url('login/register')?>">
 			  <div class="form-row pt-3">
 			    <div class="form-group col-md-6">
@@ -30,7 +28,7 @@
 			    </div>
 			  </div>
 			  <div class="row justify-content-center my-2">
-			  	<button type="submit" class="btn btn-dark">CREATE ACCOUNT</button>
+			  	<button type="submit" class="btn btn-dark">Buat Akun</button>
 			  </div>
 			</form>
 		</div>

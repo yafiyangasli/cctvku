@@ -9,7 +9,7 @@
 			<form method="post" action="<?=base_url('user/addToCart/').$dproduk['id_produk'];?>">
 			<h3 class="mb-5"><?=rupiah($dproduk['harga'])?></h3>
 			<div class="form-group col-5 col-lg-4">
-                <h4><label for="qty">Quantity</label></h4>
+                <h4><label for="qty">Jumlah</label></h4>
                 <select class="custom-select" name="jumlah" id="jumlah">
                 	<option> </option>
                 	<?php 
@@ -18,7 +18,7 @@
                 	<?php endfor;?>
                 </select>
             </div>
-            <button class="btn btn-light col-6 col-lg-4 offset-3 offset-lg-4 mt-4">Add To Cart <i class="fas fa-fw fa-shopping-cart"></i></button>
+            <button class="btn btn-light col-6 col-lg-6 offset-3 offset-lg-3 mt-4">Tambah ke Keranjang <i class="fas fa-fw fa-shopping-cart"></i></button>
         </form>
 		</div>
         <h5 style="font-family: 'Montserrat-semibold';">Deskripsi Produk</h5>

@@ -19,7 +19,7 @@ class User extends CI_Controller {
 //fungsi untuk masukkin produk ke tabel cart, overall hampir sama kayak yang lain
 	public function addToCart($id){
 		if($this->session->userdata('username')==NULL){
-			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, login first.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Tolong login terlebih dahulu</div>');
 			redirect('login');
 		}else{
 			$data['produk']=$this->db->get_where('produk',['id_produk'=>$id])->row_array();
@@ -31,7 +31,7 @@ class User extends CI_Controller {
 			$berat=$data['produk']['berat'];
 
 			if ($jumlah == 0) {
-				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, input quantity!</div>');
+				$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Masukkan jumlah!</div>');
 				redirect('catalogue/detailProduk/'.$id);
 			}
 
@@ -74,7 +74,7 @@ class User extends CI_Controller {
 			$data['jumlahCart'] = $this->Model->hitungCart($this->session->userdata('username'));	
 		}
 		if ($this->session->userdata('username')==NULL) {
-			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, login first.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Tolong login terlebih dahulu</div>');
 			redirect('login');
 		}
 		$data['title']='My Cart ';
@@ -126,7 +126,7 @@ class User extends CI_Controller {
 //fungsi untuk tampilan checkout address
 	public function checkout(){
 		if ($this->session->userdata('username')==NULL) {
-			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, login first.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Tolong login terlebih dahulu!</div>');
 			redirect('login');
 		}
 		if($this->session->userdata('username')!=NULL){
@@ -161,7 +161,7 @@ class User extends CI_Controller {
 //fungsi untuk tampilan checkout yang udah ada delivery fee nya
 	public function confirmCheckout(){
 		if ($this->session->userdata('username')==NULL) {
-			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, login first.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Tolong login terlebih dahulu!</div>');
 			redirect('login');
 		}
 		if($this->session->userdata('username')!=NULL){
@@ -277,7 +277,7 @@ class User extends CI_Controller {
 					'waktu'=>$waktu
 				];
 
-				$this->db->insert('order',$dataPushCart);
+				$this->db->insert('orderan',$dataPushCart);
 
 				$this->db->where('username',$username);
 				$this->db->delete('cart');
@@ -300,7 +300,7 @@ class User extends CI_Controller {
 //fungsi untuk tampilan transaction
 	public function transaction(){
 		if ($this->session->userdata('username')==NULL) {
-			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, login first.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Tolong login terlebih dahulu!</div>');
 			redirect('auth');
 		}
 
@@ -323,7 +323,7 @@ class User extends CI_Controller {
 //fungsi untuk tampilan form upload bukti transfer
 	public function transaction_form($id){
 		if ($this->session->userdata('username')==NULL) {
-			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Please, login first.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Tolong login terlebih dahulu!</div>');
 			redirect('auth');
 		}
 
@@ -337,20 +337,20 @@ class User extends CI_Controller {
 
 		$data['active']='Transaction';
 		$data['checkout']=$this->db->get_where('checkout',['id_checkout'=>$id])->row_array();
-		$data['order']=$this->db->get_where('order',['id_checkout'=>$id])->result_array();
+		$data['order']=$this->db->get_where('orderan',['id_checkout'=>$id])->result_array();
 		$waktuNow=date('Y-m-d H:i:s');
 
 		if($waktuNow>=$data['checkout']['deadline']){// jadi ketika deadline pembayaran terlewat, maka data checkout dan order sesuai dengan usernamenya akan di apus otomatis
 		    $this->Model->hapusPembelian($data['checkout']['id_checkout']);
-		    $this->Model->hapusOrderan($data['order']['id_checkout']);
-		    $this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Your transaction has been canceled, please confirm your transaction before the deadline!</div>');
+		    $this->Model->hapusOrderan($data['orderan']['id_checkout']);
+		    $this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Transaksi mu telah dibatalkan, tolong konfirmasi pesanan sebelum batas yang telah ditentukan!</div>');
 		    redirect('user/transaction');
 		}
 
-		$this->form_validation->set_rules('namaAkun', 'Account Name', 'required|trim');
-		$this->form_validation->set_rules('nomorAkun', 'Account Number', 'required|trim');
-		$this->form_validation->set_rules('namaBank', 'Bank Transfer From', 'required|trim');
-		$this->form_validation->set_rules('transferdate', 'Transfer Date', 'required|trim');
+		$this->form_validation->set_rules('namaAkun', 'Nama Akun', 'required|trim');
+		$this->form_validation->set_rules('nomorAkun', 'Nomor Akun', 'required|trim');
+		$this->form_validation->set_rules('namaBank', 'Transfer Bank Dari', 'required|trim');
+		$this->form_validation->set_rules('transferdate', 'Tanggal Transfer', 'required|trim');
 
 		if($this->form_validation->run()==false){
 			$this->load->view('templates/header',$data);
@@ -366,7 +366,7 @@ class User extends CI_Controller {
 			$config['upload_path']	='./assets/images/buktitrans/';
 			
 			if($upload_image==NULL){
-				$this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Please upload Transfer Receipt!</div>');
+				$this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Tolong upload bukti transfer!</div>');
 				redirect('user/transaction_form/'.$id);
 			}
 			$this->load->library('upload',$config);
@@ -396,7 +396,7 @@ class User extends CI_Controller {
 			$this->db->insert('bukti',$data);
 			$queryOrder="UPDATE `checkout` SET `is_upload` = '1' WHERE `checkout`.`id_checkout` = $id";
 			$this->db->query($queryOrder);
-			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Your transaction has been received, please wait untill our team confirm your transaction.</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaksimu telah diterima, harap menunggu sampai tim kami mengkonfirmasinya.</div>');
 			redirect('user/transaction');
 		}
 	}

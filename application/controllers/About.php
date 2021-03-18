@@ -26,7 +26,6 @@ class About extends CI_Controller {
 			$data['jumlahCart'] = $this->Model->hitungCart($this->session->userdata('username'));	
 		}
 
-		$this->load->view('templates/header',$data); //load tampilan header
 		$this->load->view('about/index', $data); //load tampilan isi
 		$this->load->view('templates/footer'); //load tampilan footer
 	}

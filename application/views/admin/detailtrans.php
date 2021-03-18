@@ -34,20 +34,20 @@
                 </div>
               </div>
               <?php if ($bukti['is_processed']==0):?>
-              <a href="<?= base_url('admin/confirmPayment/').$bukti['id_bukti'];?>" class="btn btn-dark">Confirm Payment</a>
-              <a href="<?= base_url('admin/cancelPayment/').$bukti['id_bukti'];?>" class="btn btn-danger ml-3">Cancel Payment</a>
+              <a href="<?= base_url('admin/confirmPayment/').$bukti['id_bukti'];?>" class="btn btn-dark">Konfirmasi Pembayaran</a>
+              <a href="<?= base_url('admin/cancelPayment/').$bukti['id_bukti'];?>" class="btn btn-danger ml-3">Batalkan Pembayaran</a>
               <?php elseif ($bukti['is_processed']==1):?>
               <form method="post" action="<?= base_url('admin/confirmProcessingOrder/').$bukti['id_bukti'];?>">
                 <div class="row justify-content-center mb-4">
                 <input class="form-control col-sm-8" type="text" name="resi" id="resi" placeholder="Input receipt number here">
                 </div>
                 <div class="row justify-content-center">
-                <button class="btn btn-dark" type="submit">Order Processed</button>
+                <button class="btn btn-dark" type="submit">Proses Pesanan</button>
                 </div>
               </form>
               <?php elseif ($bukti['is_processed']==2):?>
-                <a href="<?= base_url('admin/confirmPayment/').$bukti['id_bukti'];?>" class="btn btn-dark">Confirm Payment</a>
-                <a href="<?= base_url('admin/deletePayment/').$bukti['id_bukti'];?>" class="btn btn-danger ml-3">Delete</a>
+                <a href="<?= base_url('admin/confirmPayment/').$bukti['id_bukti'];?>" class="btn btn-dark">Konfirmasi Pembayaran</a>
+                <a href="<?= base_url('admin/deletePayment/').$bukti['id_bukti'];?>" class="btn btn-danger ml-3">Hapus</a>
             <?php endif;?>
             </div>            
 
@@ -55,14 +55,14 @@
 
           <div class="col-lg">
 
-            <h5 class="mx-auto mt-5">Checkout Detail</h5>
+            <h5 class="mx-auto mt-5">Detail Alamat</h5>
 
             <table class="table">
         <thead class="thead-dark">
           <tr class="text-center">
-            <th scope="col">Name</th>
-            <th scope="col">Address & Telephone</th>
-            <th scope="col">Province</th>
+            <th scope="col">Nama</th>
+            <th scope="col">Alamat & Telepon</th>
+            <th scope="col">Provinsi</th>
           </tr>
         </thead>
         <tbody>
@@ -77,16 +77,16 @@
 
           <div class="col-lg">
 
-            <h5 class="mx-auto mt-5">Order Detail</h5>
+            <h5 class="mx-auto mt-5">Detail Pesanan</h5>
 
             <table class="table table-hover">
         <thead class="thead-dark">
           <tr class="text-center">
             <th scope="col">#</th>
-            <th scope="col">Product</th>
-            <th scope="col">Price</th>
-            <th scope="col">Amount</th>
-            <th scope="col">Image</th>
+            <th scope="col">Produk</th>
+            <th scope="col">Harga</th>
+            <th scope="col">Jumlah</th>
+            <th scope="col">Gambar</th>
           </tr>
         </thead>
         <tbody>

@@ -31,7 +31,7 @@
 			
 				<div class="col-lg" style="padding-top: 5rem; padding-bottom: 1rem;">
 					<div class="row justify-content-center">
-					<a href="<?=base_url('login/register');?>" class="text-dark" style="text-align: center; text-decoration: none;">Create Your Account <i class="fas fa-fw fa-arrow-right"></i></a>
+					<a href="<?=base_url('login/register');?>" class="text-dark" style="text-align: center; text-decoration: none;">Buat akun baru <i class="fas fa-fw fa-arrow-right"></i></a>
 					</div>
 				</div>
 		</div>

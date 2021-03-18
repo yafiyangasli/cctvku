@@ -1,6 +1,6 @@
 	<div class="col-12 col-sm-8 pt-5 pb-5 pr-4 pl-4 offset-sm-2">
 		<div class="container" style="border-style: solid; border-width: 1.5px; background-color: white;">
-			<h3 class="pt-2" id="my-detail">MY ORDER</h3>
+			<h3 class="pt-2" id="my-detail">Transaksi Saya</h3>
 			<hr class="pt-0 mt-0" style="border-color: black; border-width: 1.7px;">
 			<div class="row justify-content-center">
 				<div class="col-12 col-sm-8 text-center">
@@ -15,24 +15,24 @@
 					<?php if($ck['is_upload']==0):?>
 				  	<div class="col-12 col-sm-9">
 					    <p id="media-content"><?=rupiah($ck['total']);?></p>
-					    <p id="media-content">Please confirm your transaction before <?=$ck['deadline'];?></p>
+					    <p id="media-content">Tolong konfirmasi pembayaran sebelum <?=$ck['deadline'];?></p>
 					</div>
 					<div class="col-12 col-sm-3">
-						<a href="<?=base_url('user/transaction_form/').$ck['id_checkout'];?>" class="btn btn-light">Confirm now</a>
+						<a href="<?=base_url('user/transaction_form/').$ck['id_checkout'];?>" class="btn btn-light">Konfirmasi sekarang</a>
 					</div>
 					<?php elseif($ck['is_upload']==1):?>
 					<div class="col-12 col-sm">
 						<p id="media-content"><?=rupiah($ck['total']);?></p>
 						<?php if($ck['no_resi']==0):?>
-						<p id="media-content">Please wait untill your transaction is processed, check kindly for receipt number</p>
+						<p id="media-content">Tolong menunggu sampai pesananmu diproses, cek berkala untuk nomor resi.</p>
 						<?php else:?>
-						<p id="media-content">Thank you for shopping in our website, this is your receipt number <?= $ck['no_resi'];?></p>
+						<p id="media-content">Terima kasih telah berbelanja di website kami, berikut adalah nomor resi kamu <?= $ck['no_resi'];?></p>
 						<?php endif;?>
 					</div>
 					<?php elseif($ck['is_upload']==2):?>
 					<div class="col-12 col-sm">
 						<p id="media-content"><?=rupiah($ck['total']);?></p>
-					    <p id="media-content">Proof of transfer that you sent is wrong, please contact admin to confirm payment</p>
+					    <p id="media-content">Bukti transfer yang kamu berikan salah, tolong hubungi kami untuk konfirmasi pembayaran</p>
 					</div>
 					<?php endif;?>
 					</div>

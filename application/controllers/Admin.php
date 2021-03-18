@@ -13,7 +13,7 @@ class Admin extends CI_Controller {
 //fungsi untuk halaman awal admin
 	public function index()
 	{
-		$data['title']='Unconfirmed list';
+		$data['title']='Belum Dikonfirmasi';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array(); //load data user yang aktif sekarang
 		$data['bukti']=$this->db->get_where('bukti',['is_processed'=>0])->result_array(); //load data di tabel bukti
@@ -26,7 +26,7 @@ class Admin extends CI_Controller {
 	}
 //fungsi untuk tampilan detail transaksi
 	public function detailTrans($id){
-		$data['title']='Transaction Detail';
+		$data['title']='Detail Transaksi';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 		$data['buktijumlah']=$this->db->get('bukti')->result_array();
@@ -34,7 +34,7 @@ class Admin extends CI_Controller {
 		$data['produk']=$this->db->get('produk')->result_array(); //manggil data produk di tabel produk
 		$id_checkout=$data['bukti']['id_checkout']; //nyimpen data id checkout yang ada di array data['bukti'] kedalam variabel id checkout, hal ini berlaku juga pada pemanggilan kayak begini di variabel yang lain
 		$data['checkout']=$this->db->get_where('checkout',['id_checkout'=>$id_checkout])->row_array(); //manggil ada yang ada tabel checkout dengan kondisi, hal ini sama aja dengan query 'SELECT * FROM checkout WHERE id_checkout = $id_checkout', perbedaan row_array dengan result_array adalah kalo row array itu dia ngambil data pertama yang diambil dari db sedangkan kalo result array itu ngambil semua data yang diambil
-		$data['order']=$this->db->get_where('order',['id_checkout'=>$data['bukti']['id_checkout']])->result_array();
+		$data['order']=$this->db->get_where('orderan',['id_checkout'=>$data['bukti']['id_checkout']])->result_array();
 	
 		$this->load->view('templates/admin/header',$data);
 		$this->load->view('templates/admin/sidebar',$data);
@@ -45,7 +45,7 @@ class Admin extends CI_Controller {
 //fungsi untuk confirm payment
 	public function confirmPayment($id){
 		$data['konfirmasi']=$this->db->get_where('bukti',['id_bukti'=>$id])->row_array();
-		$data['order']=$this->db->get_where('order',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
+		$data['order']=$this->db->get_where('orderan',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
 
 		$id_checkout=$data['konfirmasi']['id_checkout'];
 		
@@ -54,13 +54,13 @@ class Admin extends CI_Controller {
 		$this->db->query($queryConfirm);//$this->db->query gunanya untuk eksekusi query yang kita buat sendiri
 		$this->db->query($queryConfirmCheckout);
 		
-		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaction has been confirmed!</div>'); //set_flashdata ini gunanya untuk nyimpen session tapi sekali pake, kalo disini dia dipake untuk ngasih message bahwa transaction has been confirmed dan ini bakal ditampilin di view
+		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaksi dikonfirmasi!</div>'); //set_flashdata ini gunanya untuk nyimpen session tapi sekali pake, kalo disini dia dipake untuk ngasih message bahwa transaction has been confirmed dan ini bakal ditampilin di view
 		redirect('admin/unprocessedOrder'); //redirect ke fungsi unprocessedOrder di controllers admin, konsepnya sama pada semua redirect
 	}
 //fungsi untuk cancel payment
 	public function cancelPayment($id){
 		$data['konfirmasi']=$this->db->get_where('bukti',['id_bukti'=>$id])->row_array();
-		$data['order']=$this->db->get_where('order',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
+		$data['order']=$this->db->get_where('orderan',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
 
 		$id_checkout=$data['konfirmasi']['id_checkout'];
 
@@ -69,13 +69,13 @@ class Admin extends CI_Controller {
 		$this->db->query($queryConfirm);
 		$this->db->query($queryConfirmCheckout);
 		
-		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaction has been canceled!</div>');
+		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaksi dibatalkan!</div>');
 		redirect('admin/canceledOrder');
 	}
 //fungsi untuk delete payment
 	public function deletePayment($id){
 		$data['konfirmasi']=$this->db->get_where('bukti',['id_bukti'=>$id])->row_array();
-		$data['order']=$this->db->get_where('order',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
+		$data['order']=$this->db->get_where('orderan',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
 		$id_checkout=$data['konfirmasi']['id_checkout'];
 
 		$this->db->where('id_bukti',$id); //$this->db->where ini digunain untuk save state query where
@@ -85,7 +85,7 @@ class Admin extends CI_Controller {
 		$this->db->delete('checkout');
 
 		foreach ($data['order'] as $order) {//foreach disini itu untuk nambahin lagi data stok yang udah dikurangin pas user checkout, jadi kan paymentnya didelete jadi stok yang udah dikurangin di db bakal diupdate ke semula sebelum user checkout
-			$id_orderan=$order['id_order'];
+			$id_orderan=$order['id_orderan'];
 			$id_produk=$order['id_produk'];
 			$data['produk'] = $this->db->get_where('produk',['id_produk'=>$id_produk])->row_array();
 			$jumlah=$order['jumlah'] + $data['produk']['stok'];
@@ -93,15 +93,15 @@ class Admin extends CI_Controller {
 			$this->db->set('stok',$jumlah);//ini untuk ngejalanin query update, jadi di set dlu abis itu where state nya abis itu tabelnya apa yang mau diupdate
 			$this->db->where('id_produk',$id_produk);
 			$this->db->update('produk');
-			$this->db->where('id_order',$id_orderan);
-			$this->db->delete('order');
+			$this->db->where('id_orderan',$id_orderan);
+			$this->db->delete('orderan');
 		}
-		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaction has been deleted!</div>');
+		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Transaksi dihapus!</div>');
 		redirect('admin/canceledOrder');
 	}
 //ini fungsi untuk nampilin layer unprocessed order
 	public function unprocessedOrder(){
-		$data['title']='Unprocessed list';
+		$data['title']='Belum diproses';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 		$this->db->order_by('id_bukti','ASC');
@@ -115,7 +115,7 @@ class Admin extends CI_Controller {
 	}
 //ini fungsi untuk nampilin layer canceled order
 	public function canceledOrder(){
-		$data['title']='Canceled order list';
+		$data['title']='Order dibatalkan';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 		$data['bukti']=$this->db->get_where('bukti',['is_processed'=>2])->result_array();
@@ -129,9 +129,9 @@ class Admin extends CI_Controller {
 //ini fungsi untuk konfirmasi bahwa order bakal diproses
 	public function confirmProcessingOrder($id){
 		$data['konfirmasi']=$this->db->get_where('bukti',['id_bukti'=>$id])->row_array();
-		$data['order']=$this->db->get_where('order',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
+		$data['order']=$this->db->get_where('orderan',['id_checkout'=>$data['konfirmasi']['id_checkout']])->result_array();
 		if($this->input->post('resi')==NULL){//ini percabangan untuk deteksi kalo nomor resinya blom di input sama admin
-			$this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Please input receipt number!</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Masukkan nomor resi!</div>');
 		redirect('admin/detailTrans/'.$id);
 		}
 		$resi=$this->input->post('resi');
@@ -143,12 +143,12 @@ class Admin extends CI_Controller {
 		$this->db->where('id_checkout',$data['konfirmasi']['id_checkout']);
 		$this->db->update('checkout');
 
-		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Order have been processed!</div>');
+		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Order diproses!</div>');
 		redirect('admin/processedOrder');
 	}
 //ini fungsi untuk nampilin layer processed order
 	public function processedOrder(){
-		$data['title']='Processed list';
+		$data['title']='Order Diproses';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 		$this->db->order_by('id_bukti','DESC');
@@ -160,9 +160,17 @@ class Admin extends CI_Controller {
 		$this->load->view('admin/processed_order',$data);
 		$this->load->view('templates/admin/footer');
 	}
+
+	public function downloadDataHarian(){
+		$waktu = date('Y-m-d');
+		$query1 = "SELECT * FROM orderan WHERE waktu LIKE '$waktu%'"; //manggi data dari database sesuai hari ini
+		$data['download']=$this->db->query($query1)->result_array();
+		$data['produk']=$this->db->get('produk')->result_array();
+		$this->load->view('admin/downloadData',$data);
+	}
 //ini fungsi untuk nampilin layer newproduk
 	public function newProduk(){
-		$data['title']='Your New Product';
+		$data['title']='Produk Terbaru';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 //kodingan ini itu untuk pagination di layer ini, ini codingan bawaan codeigniter jadi gak paham paham amat gapapa, konsep ini berlaku pada semua codingan pagination kek gini
@@ -222,7 +230,7 @@ class Admin extends CI_Controller {
 	}
 //fungsi untuk nampilin layer manage product
 	public function manageproduct(){
-		$data['title']='Manage Product';
+		$data['title']='Kelola Produk';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 
@@ -287,7 +295,7 @@ class Admin extends CI_Controller {
 			$config['upload_path']	='./assets/images/cctv/';
 
 			if($upload_image==NULL){
-				$this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Please upload Product Photo!</div>');
+				$this->session->set_flashdata('message','<div class="alert alert-warning" role="alert">Tolong masukkan gambar produk!</div>');
 				redirect('admin/manageproduct');
 			}
 
@@ -316,13 +324,13 @@ class Admin extends CI_Controller {
 			]; // data detail dari produk yang bakal dimasukkin ke database
 
 			$this->db->insert('produk',$data);
-			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">New product has been added!</div>');
+			$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Produk baru ditambahkan!</div>');
 			redirect('admin/manageproduct');
 		}
 	}
 //fungsi untuk nampilin layer edit produk
 	public function editProduk($id){
-		$data['title']='Edit Product';
+		$data['title']='Edit Produk';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 		$data['produk']=$this->Model->getDataProdukById($id);
@@ -360,7 +368,7 @@ class Admin extends CI_Controller {
 				];
 				$this->db->where('id_produk',$id);
 				$this->db->update('produk',$data);
-				$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Your product has been updated!</div>');
+				$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Produk diperbarui!</div>');
 				redirect('admin/manageproduct');
 			}else{//ini ketika gambarnya di edit
 				$this->load->library('upload',$config);
@@ -385,7 +393,7 @@ class Admin extends CI_Controller {
 				];
 				$this->db->where('id_produk',$id);
 				$this->db->update('produk',$data);
-				$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Your product has been updated!</div>');
+				$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Produk diperbarui!</div>');
 				redirect('admin/manageproduct');
 			}
 
@@ -399,12 +407,12 @@ class Admin extends CI_Controller {
 			unlink(FCPATH . 'assets/images/cctv/'.$old_image);//ketika terpenuhi maka gambar akan dihapus sesuai dengan path yang sudah sediakan
 		}
 		$this->Model->hapusProduk($id);
-		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Successfully removed the product!</div>');
+		$this->session->set_flashdata('message','<div class="alert alert-success" role="alert">Berhasil menghapus produk!</div>');
 		redirect('admin/manageproduct');
 	}
 //fungsi untuk menampilkan halaman detail produk
 	public function detailProduk($id){
-		$data['title']='Product Detail';
+		$data['title']='Detail Produk';
 
 		$data['user']=$this->db->get_where('user',['username'=>$this->session->userdata('username')])->row_array();
 		$data['produk']=$this->Model->getDataProdukById($id);
